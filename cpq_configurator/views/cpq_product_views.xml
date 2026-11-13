@@ -97,17 +97,25 @@
               </div>
             </page>
 
-            <page string="Need more?" name="custom">
+            <page string="Add-ons" name="addons">
               <div class="alert alert-info" role="alert">
-                <p><strong>Need to go further with pricing?</strong></p>
+                <p><strong>Extend this configurator with Expodo add-ons</strong></p>
+                <p>These paid add-ons plug straight into the free configurator:</p>
+                <ul>
+                  <li><strong>Conditions</strong>: dependency and compatibility
+                    rules between options (allow, exclude, require, set a default)
+                    and unit conversion.</li>
+                  <li><strong>Manufacturing (BOM)</strong>: dynamic bill of materials
+                    and a manufacturing order created when the quotation is confirmed.</li>
+                  <li><strong>eCommerce</strong>: let customers configure the product
+                    themselves on your website or customer portal.</li>
+                </ul>
                 <p>
-                  Price grids (colour x size), quantity tiers, conditional
-                  compatibility rules and made to order manufacturing can be added
-                  to this configurator.
+                  Need price grids (colour x size), quantity tiers or a rule specific
+                  to your trade? Custom development is available from Expodo.
                 </p>
                 <p>
-                  Custom development is available from Expodo:
-                  <a href="mailto:info@expodo.fr">info@expodo.fr</a> ,
+                  Contact: <a href="mailto:info@expodo.fr">info@expodo.fr</a> ,
                   <a href="https://expodo.fr" target="_blank">expodo.fr</a>
                 </p>
               </div>

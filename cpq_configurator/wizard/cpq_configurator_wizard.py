@@ -67,10 +67,15 @@ class CpqConfiguratorWizard(models.TransientModel):
         self.price_total = res['total']
         self.price_breakdown = '\n'.join(breakdown)
 
+    def _get_lines_to_validate(self):
+        """Lines checked at confirmation. Add-ons can override to skip lines
+        that their rules have hidden."""
+        return self.line_ids
+
     def _validate_configuration(self):
         self.ensure_one()
         errors = []
-        for wl in self.line_ids:
+        for wl in self._get_lines_to_validate():
             attr = wl.attribute_id
             if attr.attribute_type == 'numeric':
                 value = wl.value_numeric

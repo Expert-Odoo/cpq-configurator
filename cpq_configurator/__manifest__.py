@@ -1,6 +1,6 @@
 {
     'name': 'CPQ Product Configurator, Configure Price Quote, Configurable Product, Dynamic Pricing, Custom Made to Measure',
-    'version': '19.0.1.0.0',
+    'version': '19.0.1.0.1',
     'category': 'Sales/Sales',
     'summary': 'Configure Price Quote (CPQ) on the sale order: typed attributes (selection, numeric, yes/no), option surcharges, per unit rates and named pricing formulas. Build any configurable product and get a live price on the quotation.',
     'description': 'static/description/index.html',

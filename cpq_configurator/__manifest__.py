@@ -3,6 +3,7 @@
     'version': '19.0.1.0.0',
     'category': 'Sales/Sales',
     'summary': 'Configure Price Quote (CPQ) on the sale order: typed attributes (selection, numeric, yes/no), option surcharges, per unit rates and named pricing formulas. Build any configurable product and get a live price on the quotation.',
+    'description': 'static/description/index.html',
     'author': 'Expodo',
     'website': 'https://expodo.fr',
     'support': 'info@expodo.fr',
@@ -19,6 +20,7 @@
     'demo': [
         'demo/demo_data.xml',
     ],
+    'images': ['static/description/banner.png', 'static/description/icon.png'],
     'installable': True,
     'application': True,
 }

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="view_order_form_cpq" model="ir.ui.view">
+    <field name="name">sale.order.form.cpq</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_order_form"/>
+    <field name="arch" type="xml">
+
+      <xpath expr="//field[@name='order_line']/list" position="inside">
+        <field name="cpqc_ok" column_invisible="1"/>
+        <field name="cpqc_configuration_id" column_invisible="1"/>
+        <button name="action_configure_cpqc" type="object"
+                string="Configure"
+                icon="fa-sliders"
+                class="btn-link"
+                invisible="not cpqc_ok"/>
+      </xpath>
+
+    </field>
+  </record>
+
+</odoo>

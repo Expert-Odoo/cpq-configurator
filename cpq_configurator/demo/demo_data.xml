@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data noupdate="1">
+
+    <!-- Demo product -->
+    <record id="product_demo_window" model="product.template">
+      <field name="name">Custom Window (CPQ Demo)</field>
+      <field name="type">consu</field>
+      <field name="list_price">0.0</field>
+      <field name="sale_ok" eval="True"/>
+    </record>
+
+    <!-- Configurable definition -->
+    <record id="cpq_demo_window" model="cpqc.product">
+      <field name="name">Custom Window</field>
+      <field name="product_tmpl_id" ref="product_demo_window"/>
+      <field name="base_price">25.0</field>
+    </record>
+
+    <!-- Numeric dimensions -->
+    <record id="attr_demo_width" model="cpqc.attribute">
+      <field name="cpq_product_id" ref="cpq_demo_window"/>
+      <field name="name">Width</field>
+      <field name="code">width</field>
+      <field name="sequence">10</field>
+      <field name="attribute_type">numeric</field>
+      <field name="numeric_unit">mm</field>
+      <field name="numeric_min">200</field>
+      <field name="numeric_max">3000</field>
+      <field name="numeric_default">1000</field>
+    </record>
+
+    <record id="attr_demo_height" model="cpqc.attribute">
+      <field name="cpq_product_id" ref="cpq_demo_window"/>
+      <field name="name">Height</field>
+      <field name="code">height</field>
+      <field name="sequence">20</field>
+      <field name="attribute_type">numeric</field>
+      <field name="numeric_unit">mm</field>
+      <field name="numeric_min">200</field>
+      <field name="numeric_max">3000</field>
+      <field name="numeric_default">1200</field>
+    </record>
+
+    <!-- List attribute carrying a rate per m2 in number_value -->
+    <record id="attr_demo_glass" model="cpqc.attribute">
+      <field name="cpq_product_id" ref="cpq_demo_window"/>
+      <field name="name">Glass</field>
+      <field name="code">rate_glass</field>
+      <field name="sequence">30</field>
+      <field name="attribute_type">list</field>
+    </record>
+    <record id="val_demo_glass_single" model="cpqc.attribute.value">
+      <field name="attribute_id" ref="attr_demo_glass"/>
+      <field name="name">Single glazing</field>
+      <field name="number_value">90.0</field>
+      <field name="is_default" eval="True"/>
+    </record>
+    <record id="val_demo_glass_double" model="cpqc.attribute.value">
+      <field name="attribute_id" ref="attr_demo_glass"/>
+      <field name="name">Double glazing</field>
+      <field name="number_value">140.0</field>
+      <field name="surcharge">15.0</field>
+    </record>
+
+    <!-- Simple rated numeric: extra handles priced per unit -->
+    <record id="attr_demo_handles" model="cpqc.attribute">
+      <field name="cpq_product_id" ref="cpq_demo_window"/>
+      <field name="name">Handles</field>
+      <field name="code">handles</field>
+      <field name="sequence">40</field>
+      <field name="attribute_type">numeric</field>
+      <field name="numeric_rate">12.0</field>
+      <field name="numeric_min">0</field>
+      <field name="numeric_max">10</field>
+      <field name="numeric_default">1</field>
+      <field name="is_required" eval="False"/>
+    </record>
+
+    <!-- Boolean surcharge -->
+    <record id="attr_demo_install" model="cpqc.attribute">
+      <field name="cpq_product_id" ref="cpq_demo_window"/>
+      <field name="name">On-site installation</field>
+      <field name="code">install</field>
+      <field name="sequence">50</field>
+      <field name="attribute_type">boolean</field>
+      <field name="bool_surcharge">80.0</field>
+    </record>
+
+    <!-- Formula: area priced by the selected glass rate -->
+    <record id="formula_demo_area" model="cpqc.formula">
+      <field name="cpq_product_id" ref="cpq_demo_window"/>
+      <field name="name">Glass area</field>
+      <field name="sequence">10</field>
+      <field name="expression">(width / 1000) * (height / 1000) * rate_glass</field>
+    </record>
+
+  </data>
+</odoo>

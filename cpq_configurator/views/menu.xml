@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <menuitem id="menu_cpq_root"
+            name="Configurator"
+            parent="sale.sale_menu_root"
+            sequence="90"/>
+
+  <menuitem id="menu_cpq_product"
+            name="Configurable Products"
+            parent="menu_cpq_root"
+            action="action_cpq_product"
+            sequence="10"/>
+
+</odoo>

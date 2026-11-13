@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="view_cpq_product_form" model="ir.ui.view">
+    <field name="name">cpqc.product.form</field>
+    <field name="model">cpqc.product</field>
+    <field name="arch" type="xml">
+      <form>
+        <sheet>
+          <div class="oe_title">
+            <label for="name"/>
+            <h1><field name="name" placeholder="e.g. Custom Window"/></h1>
+          </div>
+          <group>
+            <group>
+              <field name="product_tmpl_id" options="{'no_create': True}"/>
+              <field name="base_price"/>
+            </group>
+            <group>
+              <field name="price_preview" readonly="1"/>
+              <field name="active" invisible="1"/>
+            </group>
+          </group>
+
+          <notebook>
+            <page string="Attributes" name="attributes">
+              <field name="attribute_ids">
+                <list editable="bottom">
+                  <field name="sequence" widget="handle"/>
+                  <field name="name"/>
+                  <field name="code"/>
+                  <field name="attribute_type"/>
+                  <field name="is_required"/>
+                  <field name="numeric_rate"
+                         column_invisible="parent.id == False"
+                         optional="show"/>
+                  <field name="numeric_unit" optional="hide"/>
+                  <field name="numeric_min" optional="hide"/>
+                  <field name="numeric_max" optional="hide"/>
+                  <field name="numeric_default" optional="hide"/>
+                  <field name="bool_surcharge" optional="hide"/>
+                  <field name="bool_default" optional="hide"/>
+                </list>
+                <form>
+                  <group>
+                    <group>
+                      <field name="name"/>
+                      <field name="code"/>
+                      <field name="attribute_type"/>
+                      <field name="is_required"/>
+                    </group>
+                    <group invisible="attribute_type != 'numeric'">
+                      <field name="numeric_rate"/>
+                      <field name="numeric_unit"/>
+                      <field name="numeric_min"/>
+                      <field name="numeric_max"/>
+                      <field name="numeric_default"/>
+                    </group>
+                    <group invisible="attribute_type != 'boolean'">
+                      <field name="bool_surcharge"/>
+                      <field name="bool_default"/>
+                    </group>
+                  </group>
+                  <group string="Values" invisible="attribute_type != 'list'">
+                    <field name="value_ids" nolabel="1" colspan="2">
+                      <list editable="bottom">
+                        <field name="sequence" widget="handle"/>
+                        <field name="name"/>
+                        <field name="surcharge"/>
+                        <field name="number_value"/>
+                        <field name="is_default"/>
+                      </list>
+                    </field>
+                  </group>
+                </form>
+              </field>
+              <div class="text-muted mt-2">
+                A numeric attribute with a Rate adds "value x rate" to the price.
+                Every attribute value is available to formulas through its Code
+                (a list attribute exposes the Formula Value of the chosen option).
+              </div>
+            </page>
+
+            <page string="Pricing Formulas" name="formulas">
+              <field name="formula_ids">
+                <list editable="bottom">
+                  <field name="sequence" widget="handle"/>
+                  <field name="name"/>
+                  <field name="expression"/>
+                  <field name="active" widget="boolean_toggle"/>
+                </list>
+              </field>
+              <div class="text-muted mt-2">
+                Combine attribute codes with arithmetic, for example
+                <code>length * width * rate_material</code>. Allowed: + - * / ** ( ),
+                and round, min, max, abs. Each formula result is added to the price.
+              </div>
+            </page>
+
+            <page string="Need more?" name="custom">
+              <div class="alert alert-info" role="alert">
+                <p><strong>Need to go further with pricing?</strong></p>
+                <p>
+                  Price grids (colour x size), quantity tiers, conditional
+                  compatibility rules and made to order manufacturing can be added
+                  to this configurator.
+                </p>
+                <p>
+                  Custom development is available from Expodo:
+                  <a href="mailto:info@expodo.fr">info@expodo.fr</a> ,
+                  <a href="https://expodo.fr" target="_blank">expodo.fr</a>
+                </p>
+              </div>
+            </page>
+          </notebook>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record id="view_cpq_product_list" model="ir.ui.view">
+    <field name="name">cpqc.product.list</field>
+    <field name="model">cpqc.product</field>
+    <field name="arch" type="xml">
+      <list>
+        <field name="name"/>
+        <field name="product_tmpl_id"/>
+        <field name="base_price"/>
+      </list>
+    </field>
+  </record>
+
+  <record id="action_cpq_product" model="ir.actions.act_window">
+    <field name="name">Configurable Products</field>
+    <field name="res_model">cpqc.product</field>
+    <field name="view_mode">list,form</field>
+  </record>
+
+</odoo>

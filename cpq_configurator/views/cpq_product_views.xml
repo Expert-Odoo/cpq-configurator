@@ -41,44 +41,33 @@
                   <field name="bool_surcharge" optional="hide"/>
                   <field name="bool_default" optional="hide"/>
                 </list>
-                <form>
-                  <group>
-                    <group>
-                      <field name="name"/>
-                      <field name="code"/>
-                      <field name="attribute_type"/>
-                      <field name="is_required"/>
-                    </group>
-                    <group invisible="attribute_type != 'numeric'">
-                      <field name="numeric_rate"/>
-                      <field name="numeric_unit"/>
-                      <field name="numeric_min"/>
-                      <field name="numeric_max"/>
-                      <field name="numeric_default"/>
-                    </group>
-                    <group invisible="attribute_type != 'boolean'">
-                      <field name="bool_surcharge"/>
-                      <field name="bool_default"/>
-                    </group>
-                  </group>
-                  <group string="Values" invisible="attribute_type != 'list'">
-                    <field name="value_ids" nolabel="1" colspan="2">
-                      <list editable="bottom">
-                        <field name="sequence" widget="handle"/>
-                        <field name="name"/>
-                        <field name="surcharge"/>
-                        <field name="number_value"/>
-                        <field name="is_default"/>
-                      </list>
-                    </field>
-                  </group>
-                </form>
               </field>
               <div class="text-muted mt-2">
                 A numeric attribute with a Rate adds "value x rate" to the price.
                 Every attribute value is available to formulas through its Code
                 (a list attribute exposes the Formula Value of the chosen option).
+                Add the options of a list attribute in the Options tab.
               </div>
+            </page>
+            <page string="Options" name="options">
+              <div class="text-muted mt-2 mb-2">
+                Options of your list attributes. Create the list attributes in the
+                Attributes tab first, then pick each one in the Attribute column and
+                add its options. Formula Value is the number the option exposes to
+                pricing formulas through the attribute code.
+              </div>
+              <field name="list_value_ids">
+                <list editable="bottom">
+                  <field name="sequence" widget="handle"/>
+                  <field name="attribute_id"
+                         domain="[('cpq_product_id', '=', parent.id), ('attribute_type', '=', 'list')]"
+                         options="{'no_create': True}"/>
+                  <field name="name"/>
+                  <field name="number_value"/>
+                  <field name="surcharge"/>
+                  <field name="is_default"/>
+                </list>
+              </field>
             </page>
 
             <page string="Pricing Formulas" name="formulas">

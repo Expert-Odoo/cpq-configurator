@@ -7,7 +7,7 @@
     <field name="inherit_id" ref="sale.view_order_form"/>
     <field name="arch" type="xml">
 
-      <xpath expr="//field[@name='order_line']/list" position="inside">
+      <xpath expr="//field[@name='order_line']/tree" position="inside">
         <field name="cpqc_ok" column_invisible="1"/>
         <field name="cpqc_configuration_id" column_invisible="1"/>
         <button name="action_configure_cpqc" type="object"

@@ -12,7 +12,7 @@
           </div>
 
           <field name="line_ids" nolabel="1">
-            <list editable="bottom" create="false" delete="false">
+            <tree editable="bottom" create="false" delete="false">
               <field name="sequence" column_invisible="1"/>
               <field name="attribute_type" column_invisible="1"/>
               <field name="attribute_id" column_invisible="1"/>
@@ -29,7 +29,7 @@
                      invisible="attribute_type != 'boolean'"
                      string="Included"
                      widget="boolean_toggle"/>
-            </list>
+            </tree>
           </field>
 
           <div class="mt-3 p-2 border rounded bg-view">

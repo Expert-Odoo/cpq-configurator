@@ -25,7 +25,7 @@
           <notebook>
             <page string="Attributes" name="attributes">
               <field name="attribute_ids">
-                <list editable="bottom">
+                <tree editable="bottom">
                   <field name="sequence" widget="handle"/>
                   <field name="name"/>
                   <field name="code"/>
@@ -40,7 +40,7 @@
                   <field name="numeric_default" optional="hide"/>
                   <field name="bool_surcharge" optional="hide"/>
                   <field name="bool_default" optional="hide"/>
-                </list>
+                </tree>
                 <form>
                   <group>
                     <group>
@@ -63,13 +63,13 @@
                   </group>
                   <group string="Values" invisible="attribute_type != 'list'">
                     <field name="value_ids" nolabel="1" colspan="2">
-                      <list editable="bottom">
+                      <tree editable="bottom">
                         <field name="sequence" widget="handle"/>
                         <field name="name"/>
                         <field name="surcharge"/>
                         <field name="number_value"/>
                         <field name="is_default"/>
-                      </list>
+                      </tree>
                     </field>
                   </group>
                 </form>
@@ -83,12 +83,12 @@
 
             <page string="Pricing Formulas" name="formulas">
               <field name="formula_ids">
-                <list editable="bottom">
+                <tree editable="bottom">
                   <field name="sequence" widget="handle"/>
                   <field name="name"/>
                   <field name="expression"/>
                   <field name="active" widget="boolean_toggle"/>
-                </list>
+                </tree>
               </field>
               <div class="text-muted mt-2">
                 Combine attribute codes with arithmetic, for example
@@ -130,18 +130,18 @@
     <field name="name">cpqc.product.list</field>
     <field name="model">cpqc.product</field>
     <field name="arch" type="xml">
-      <list>
+      <tree>
         <field name="name"/>
         <field name="product_tmpl_id"/>
         <field name="base_price"/>
-      </list>
+      </tree>
     </field>
   </record>
 
   <record id="action_cpq_product" model="ir.actions.act_window">
     <field name="name">Configurable Products</field>
     <field name="res_model">cpqc.product</field>
-    <field name="view_mode">list,form</field>
+    <field name="view_mode">tree,form</field>
   </record>
 
 </odoo>
